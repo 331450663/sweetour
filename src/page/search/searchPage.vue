@@ -30,10 +30,12 @@
 
 </script>
 
-<style scoped>
-      .search-header {text-align: center}
+<style coped lang="scss">
+      $width: 36%;
+      .search-header {text-align: center;}
       .search-header img { width: 36%;}
       .search-input{background-color:#ebedf1;height: 1.5rem;text-align: center;}
       .search-input p{font-size: .32rem;padding:.05rem 0;}
+      /*scoped lang="scss"*/
 </style>
 
