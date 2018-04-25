@@ -2,7 +2,7 @@
     <header>
         <div class="search-header">
              <router-link :to="'home'">
-                 <img src="../../images/mobile-logo.png" />
+                 <img src="../../images/public/mobile-logo.png" />
              </router-link>
         </div>
         <div class="search-input">

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="ind-logo-show"><img src="../../images/mobile-logo.png"/></div>
+        <div class="ind-logo-show"><img src="../../images/public/mobile-logo.png"/></div>
         <div class="ind-search">
              <input type="search" placeholder="目的地/关键字/景点" class="ind-sea-inp"/>
         </div>
