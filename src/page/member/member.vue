@@ -1,6 +1,6 @@
 <template>
     <div>
-    <div>member</div>
+    <div>i'm mmember</div>
     <page-footer></page-footer>
     </div>
 </template>
@@ -16,11 +16,9 @@
   components:{pageFooter}
 }
 
-   
-
 </script>
 
 <style scoped>
-        
+
 </style>
 
