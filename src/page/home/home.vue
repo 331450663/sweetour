@@ -2,7 +2,7 @@
     <div>
         <div class="ind-logo-show"><img src="../../images/public/mobile-logo.png"/></div>
         <div class="ind-search">
-             <input type="search" placeholder="目的地/关键字/景点" class="ind-sea-inp"/>
+             <router-link :to="'destination'"><input type="search" placeholder="目的地/关键字/景点" class="ind-sea-inp"/></router-link>
         </div>
         <!-- 轮播 -->
         <section class="swiper-container ind-banenr">
