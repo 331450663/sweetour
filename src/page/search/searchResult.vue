@@ -39,7 +39,7 @@
     <!--跟团-->
     <div class="category-content" v-if="ProductCount.GroupCount>0">
        <h2 class="category">跟团游</h2>
-       <ul class="search-pro">
+         <ul class="search-pro">
          <li v-for="(item,index) in ProductList.GroupList.slice(0, 3)">
             <router-link :to="{path:'freeDetail',query: {ID: item.ProductID}}">
               <div class="search-img">
@@ -109,7 +109,7 @@
                 <img v-bind:src="item.ImagePath">
                 <em class="mark-type">城市玩乐</em>
                 <em class="mark-key">{{item.Destination}}</em>
-              </div>
+                </div>
               <div class="search-infor">
                 <h1>{{item.Title}}</h1>
                 <p>{{item.SubTitle}}</p>

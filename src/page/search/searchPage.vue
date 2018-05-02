@@ -116,7 +116,7 @@
         div{height:.6rem}
         .title{float:left}
         .count{float:right}
-      }
+        }
     }
 </style>
 
