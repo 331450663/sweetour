@@ -6,6 +6,7 @@ import destination from '@/page/destination/destination'
 import notesList from '@/page/travelNotes/notesList'
 import member from '@/page/member/member'
 import searchPage from '@/page/search/searchPage'
+import searchResult from '@/page/search/searchResult'
 
 Vue.use(Router)
 
@@ -28,6 +29,9 @@ export default new Router({
     },{
       path: '/searchPage',
       component: searchPage
+    },{
+      path: '/searchResult',
+      component: searchResult
     }
   ]
 })

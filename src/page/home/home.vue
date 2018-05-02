@@ -2,7 +2,7 @@
     <div>
         <div class="ind-logo-show"><img src="../../images/public/mobile-logo.png"/></div>
         <div class="ind-search">
-             <router-link :to="'destination'"><input type="search" placeholder="目的地/关键字/景点" class="ind-sea-inp"/></router-link>
+             <router-link :to="'searchPage'"><input type="search" placeholder="目的地/关键字/景点" class="ind-sea-inp"/></router-link>
         </div>
         <!-- 轮播 -->
         <section class="swiper-container ind-banenr">
@@ -60,7 +60,7 @@
 
 <style scoped>
         /*logo、搜索*/
-        .ind-logo-show{width:2.22rem;height:.73rem;margin:0 auto}
+        .ind-logo-show{width:2.5rem;height:.73rem;margin:0 auto}
         .ind-logo-show img{width:100%;vertical-align:top}
         .ind-search{margin-top:.21rem;height:.7rem;text-align:center}
         .ind-sea-inp{width:94%;height:100%;border-radius:15rem;border:none;background:#f5f5f5;padding-left:.6rem;font-size:.26rem;vertical-align:top}
