@@ -3,7 +3,7 @@
     <header class="header-sub">
             <h1>{{this.$route.query.key}}</h1>
     </header>
-    <ul class="search-navtab">
+    <ul class="search-navtab" id="search-navtab">
         <li v-for="(item,index) in navtab" :class="{current:num == index}"  @click="navtabClick(index)">{{item.name}}</li>
     </ul>
     <div class="swiper-container" id="content">
@@ -288,6 +288,12 @@
         onSlideChangeStart: function (swiper) {
             _this.num = mySwiper.activeIndex;  //滑动过程中菜单选中状态跟着变化
             document.body.scrollTop =0;//每次滑动到下一个目标滚动条都滚动到最上部
+            if(_this.num <= 2) {
+                document.getElementById("search-navtab").scrollLeft=-500;
+            }
+            if(_this.num >= 3) {
+                document.getElementById("search-navtab").scrollLeft=500;
+            }
         },
 
     })
