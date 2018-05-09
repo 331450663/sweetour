@@ -88,7 +88,7 @@
           alert("请输入搜索关键字");
           return;
          }else{
-          this.$router.push({path:'searchResult',query: {type: 'all', key: this.keyword}})
+          this.$router.push({path:'searchResult',query: {type: '0', key: this.keyword}})
          }
     },
     customer:function(){

@@ -4,13 +4,7 @@
             <h1>{{this.$route.query.key}}</h1>
     </header>
     <ul class="search-navtab">
-        <li v-if="item.count>0" v-for="(item,index) in navtab" :class="{current:num == index}"  @click="navtabClick(index)">{{item.name}}</li>
-        <!-- <li :class="{current:num == $index}" @click="navtabClick($index)">全部</li>
-        <li :class="{current:num == index}" v-if="FreeCount>0" @click="navtabClick($index)">机票+酒店</li>
-        <li :class="{current:num == index}" v-if="GroupCount>0" @click="navtabClick($index)">跟团游</li>
-        <li :class="{current:num == index}" v-if="SideCount>0" @click="navtabClick($index)">周边游</li>
-        <li :class="{current:num == index}" v-if="VisaCount>0" @click="navtabClick($index)">签证</li>
-        <li :class="{current:num == index}" v-if="SingeCount>0" @click="navtabClick($index)">城市玩乐</li>-->
+        <li v-for="(item,index) in navtab" :class="{current:num == index}"  @click="navtabClick(index)">{{item.name}}</li>
     </ul>
     <div class="swiper-container" id="content">
     <div class="swiper-wrapper">
@@ -35,7 +29,7 @@
             </router-link>
          </li>
        </ul>
-       <div class="search-more" onclick="type(1)" v-if="FreeCount>4">查看更多</div>
+       <div class="search-more" @click="navtabClick(1)" v-if="FreeCount>4">查看更多</div>
     </div>
     <!--跟团-->
     <div class="category-content" v-if="GroupCount>0">
@@ -56,7 +50,7 @@
             </router-link>
          </li>
        </ul>
-       <div class="search-more" onclick="type(2)" v-if="GroupCount>4">查看更多</div>
+       <div class="search-more" @click="navtabClick(2)" v-if="GroupCount>4">查看更多</div>
     </div>
     <!--周边游-->
     <div class="category-content" v-if="SideCount>0">
@@ -77,7 +71,7 @@
             </router-link>
          </li>
        </ul>
-       <div class="search-more" onclick="type(3)" v-if="SideCount>4">查看更多</div>
+       <div class="search-more" @click="navtabClick(3)" v-if="SideCount>4">查看更多</div>
     </div>
     <!--签证-->
     <div class="category-content" v-if="VisaCount>0">
@@ -98,7 +92,7 @@
             </router-link>
          </li>
        </ul>
-       <div class="search-more" onclick="type(4)" v-if="VisaCount>4">查看更多</div>
+       <div class="search-more" @click="navtabClick(4)" v-if="VisaCount>4">查看更多</div>
     </div>
     <!--城市玩乐-->
     <div class="category-content" v-if="SingeCount>0">
@@ -119,11 +113,11 @@
             </router-link>
          </li>
        </ul>
-       <div class="search-more" onclick="type(5)" v-if="SingeCount>4">查看更多</div>
+       <div class="search-more" @click="navtabClick(5)" v-if="SingeCount>4">查看更多</div>
     </div>
     </div>
     <!--自由行-->
-    <div class="swiper-slide search-content con1" v-if="FreeCount>0">
+    <div class="swiper-slide search-content" v-if="FreeCount>0">
         <ul class="search-pro">
          <li v-for="(item,index) in ProductList.FreeList">
             <router-link :to="{path:'freeDetail',query: {ID: item.ProductID}}">
@@ -142,7 +136,7 @@
         </ul>
     </div>
     <!--跟团游-->
-    <div class="swiper-slide search-content con2" v-if="GroupCount>0">
+    <div class="swiper-slide search-content" v-if="GroupCount>0">
         <ul class="search-pro">
          <li v-for="(item,index) in ProductList.GroupList">
             <router-link :to="{path:'freeDetail',query: {ID: item.ProductID}}">
@@ -161,7 +155,7 @@
         </ul>
     </div>
     <!--周边游-->
-    <div class="swiper-slide search-content con3" v-if="SideCount>0">
+    <div class="swiper-slide search-content" v-if="SideCount>0">
         <ul class="search-pro">
          <li v-for="(item,index) in ProductList.SideList">
             <router-link :to="{path:'freeDetail',query: {ID: item.ProductID}}">
@@ -180,7 +174,7 @@
         </ul>
     </div>
     <!--签证-->
-    <div class="swiper-slide search-content con4" v-if="VisaCount>0">
+    <div class="swiper-slide search-content" v-if="VisaCount>0">
         <ul class="search-pro">
          <li v-for="(item,index) in ProductList.VisaList">
             <router-link :to="{path:'freeDetail',query: {ID: item.ProductID}}">
@@ -199,7 +193,7 @@
         </ul>
     </div>
     <!--城市玩乐-->
-    <div class="swiper-slide search-content con5" v-if="SingeCount>0">
+    <div class="swiper-slide search-content" v-if="SingeCount>0">
         <ul class="search-pro">
          <li v-for="(item,index) in ProductList.SingeList.slice(0, 3)">
             <router-link :to="{path:'freeDetail',query: {ID: item.ProductID}}">
@@ -236,12 +230,6 @@
       num:0,
       ProductList:[],
       navtab:[
-         {name:"全部",count:0},
-         {name:"机票+酒店",count:0},
-         {name:"跟团游",count:0},
-         {name:"周边游",count:0},
-         {name:"签证",count:0},
-         {name:"城市玩乐",count:0}
       ],
       TotalCount:0,
       FreeCount:0,
@@ -255,6 +243,7 @@
   mounted(){   //页面加载完成执行函数
     this.getlistData();
     this.swiperMethod();
+    setTimeout(()=>{this.navtabClick(this.$route.query.type)},1000);
   },
   methods:{
       //获取搜索结果
@@ -263,12 +252,31 @@
          this.$http.post(this.GLOBAL.serverSrc+"Search/GetSearchResultList",this.qs.stringify({'Keyword':this.$route.query.key}))
              .then(function(res){                                     
               _this.ProductList=res.data.ProductList;  
-              _this.TotalCount=_this.navtab[0].count=res.data.ProductCount.TotalCount; 
-              _this.FreeCount=_this.navtab[1].count=res.data.ProductCount.FreeCount;
-              _this.GroupCount=_this.navtab[2].count=res.data.ProductCount.GroupCount;     
-              _this.SideCount=_this.navtab[3].count=res.data.ProductCount.SideCount;    
-              _this.VisaCount=_this.navtab[4].count=res.data.ProductCount.VisaCount;    
-              _this.SingeCount=_this.navtab[5].count=res.data.ProductCount.SingeCount; 
+              _this.TotalCount=res.data.ProductCount.TotalCount; 
+              _this.FreeCount=res.data.ProductCount.FreeCount;
+              _this.GroupCount=res.data.ProductCount.GroupCount;     
+              _this.SideCount=res.data.ProductCount.SideCount;    
+              _this.VisaCount=res.data.ProductCount.VisaCount;    
+              _this.SingeCount=res.data.ProductCount.SingeCount; 
+              if(_this.TotalCount>0){
+                  _this.navtab.push({name:"全部"});
+              }
+              if(_this.FreeCount>0){
+                  _this.navtab.push({name:"机票+酒店"});
+              }
+              if(_this.GroupCount>0){
+                  _this.navtab.push({name:"跟团游"});
+              }
+              if(_this.SideCount>0){
+                  _this.navtab.push({name:"周边游"});
+              }
+              if(_this.VisaCount>0){
+                  _this.navtab.push({name:"签证"});
+              }
+              if(_this.SingeCount>0){
+                  _this.navtab.push({name:"城市玩乐"});
+              }
+
         })
     },
     swiperMethod:function(){
@@ -279,19 +287,17 @@
         observeParents: true,  //修改swiper的父元素时，自动初始化swiper
         onSlideChangeStart: function (swiper) {
             _this.num = mySwiper.activeIndex;  //滑动过程中菜单选中状态跟着变化
-           // console.log(_this.num);
+            document.body.scrollTop =0;//每次滑动到下一个目标滚动条都滚动到最上部
         },
 
     })
-        this.mySwiper=mySwiper;
+      this.mySwiper=mySwiper;
     },
     navtabClick:function(index){
       console.log(index);
       this.num = index;
-      console.log(this.num);
-
       this.mySwiper.slideTo(index, 500);
-    }   
+    }
   }
 }
 </script>
@@ -323,6 +329,6 @@
    }
    .search-more{height:.8rem;line-height:.8rem;color:#4ea2ff;text-align:center;font-size:.3rem;border-top:1px solid #edecf1;background-color:#fff;}
     #content{padding-top:2rem;height:100%}  
-   .swiper-slide-active{height:auto;background-color:#fff;min-height:400px}
+   .swiper-slide-active{height:auto;background-color:#fff;min-height:550px}
 </style>
 
