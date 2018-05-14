@@ -70,7 +70,7 @@
    //获取搜索结果
    getTagList:function(Keyword){         
          const _this=this;
-         this.$http.post(this.GLOBAL.serverSrc+"Search/GetTagList_APP",this.qs.stringify({'Keyword':Keyword}))
+         this.$http.post(this.GLOBAL.serverSrc+'Search/GetTagList_APP',this.qs.stringify({'Keyword':Keyword}))
              .then(function(res){
               _this.tagList=res.data;              
         })
@@ -81,11 +81,11 @@
           return;
          }
          else if (this.keyword.length > 30) {
-          alert("搜索内容必须小于30个字");
+          alert('搜索内容必须小于30个字');
           return;
          }
-         else if (this.keyword == "目的地/关键字/景点") {
-          alert("请输入搜索关键字");
+         else if (this.keyword == '目的地/关键字/景点') {
+          alert('请输入搜索关键字');
           return;
          }else{
           this.$router.push({path:'searchResult',query: {type: '0', key: this.keyword}})
@@ -101,21 +101,21 @@
 <style coped lang="scss">
       .search-header {text-align: center;position:relative;
         img { width: 34%;}
-        i {position:absolute;font-size:.6rem;right:.2rem;top:.05rem;color:#9f9f9f}
+        i {position:absolute;font-size:.6rem;right:.2rem;top:.05rem;color:#9f9f9f;}
       }
       .search-input{background-color:#ebedf1;height: 1.53rem;text-align: center;position:relative;
             p{font-size: .35rem;padding:.2rem 0;}
             input{border:0;vertical-align:top;width: 96%;background: #fff;height: .6rem;line-height:.6rem;text-align:center;font-size: .28rem;}
-            i{position:absolute;right:.3rem;bottom:.08rem;font-size:.37rem;color:#9f9f9f}
+            i{position:absolute;right:.3rem;bottom:.08rem;font-size:.37rem;color:#9f9f9f;}
       }
       .result {
         margin-top:.25rem;
        li{
         font-size:.28rem;line-height:.6rem;border-bottom:1px solid #eee;padding:0 .2rem;clear:both;height:.6rem;
-        a{color:#000}
-        div{height:.6rem}
-        .title{float:left}
-        .count{float:right}
+        a{color:#000;}
+        div{height:.6rem;}
+        .title{float:left;}
+        .count{float:right;}
         }
     }
 </style>

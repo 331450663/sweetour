@@ -9,7 +9,7 @@
     <div class="swiper-container" id="content">
     <div class="swiper-wrapper">
     <!--全部分类-->
-    <div class="swiper-slide search-content">
+    <div class="swiper-slide search-content swiper-all">
     <!--自由行-->
     <div class="category-content" v-if="FreeCount>0">
        <h2 class="category">机票+酒店</h2>
@@ -249,7 +249,7 @@
       //获取搜索结果
     getlistData:function(){         
          const _this=this;
-         this.$http.post(this.GLOBAL.serverSrc+"Search/GetSearchResultList",this.qs.stringify({'Keyword':this.$route.query.key}))
+         this.$http.post(this.GLOBAL.serverSrc+'Search/GetSearchResultList',this.qs.stringify({'Keyword':this.$route.query.key}))
              .then(function(res){                                     
               _this.ProductList=res.data.ProductList;  
               _this.TotalCount=res.data.ProductCount.TotalCount; 
@@ -259,22 +259,22 @@
               _this.VisaCount=res.data.ProductCount.VisaCount;    
               _this.SingeCount=res.data.ProductCount.SingeCount; 
               if(_this.TotalCount>0){
-                  _this.navtab.push({name:"全部"});
+                  _this.navtab.push({name:'全部'});
               }
               if(_this.FreeCount>0){
-                  _this.navtab.push({name:"机票+酒店"});
+                  _this.navtab.push({name:'机票+酒店'});
               }
               if(_this.GroupCount>0){
-                  _this.navtab.push({name:"跟团游"});
+                  _this.navtab.push({name:'跟团游'});
               }
               if(_this.SideCount>0){
-                  _this.navtab.push({name:"周边游"});
+                  _this.navtab.push({name:'周边游'});
               }
               if(_this.VisaCount>0){
-                  _this.navtab.push({name:"签证"});
+                  _this.navtab.push({name:'签证'});
               }
               if(_this.SingeCount>0){
-                  _this.navtab.push({name:"城市玩乐"});
+                  _this.navtab.push({name:'城市玩乐'});
               }
 
         })
@@ -289,10 +289,10 @@
             _this.num = mySwiper.activeIndex;  //滑动过程中菜单选中状态跟着变化
             document.body.scrollTop =0;//每次滑动到下一个目标滚动条都滚动到最上部
             if(_this.num <= 2) {
-                document.getElementById("search-navtab").scrollLeft=-500;
+                document.getElementById('search-navtab').scrollLeft=-500;
             }
             if(_this.num >= 3) {
-                document.getElementById("search-navtab").scrollLeft=500;
+                document.getElementById('search-navtab').scrollLeft=500;
             }
         },
 
@@ -300,7 +300,6 @@
       this.mySwiper=mySwiper;
     },
     navtabClick:function(index){
-      console.log(index);
       this.num = index;
       this.mySwiper.slideTo(index, 500);
     }
@@ -310,11 +309,11 @@
 <style coped lang="scss">
    @import'../../style/libs/swiper.min.css';
    .header-sub {z-index: 10;width: 100%;height: 1rem;background-color: #fff;line-height: 1rem;text-align: center;font-size:.5rem;position: fixed}
-   .search-navtab{height: 1rem;font-size: .32rem;width: 100%;overflow-x: scroll;display:-webkit-box;position: fixed;z-index: 9;padding-top: 1rem;background:#d2d5dc;
-     li{text-align: center;cursor: pointer;padding: .1rem .25rem;color: #fff;margin: .2rem;border-radius: 22px}
+   .search-navtab{height: .85rem;font-size: .32rem;width: 100%;overflow-x: scroll;display:-webkit-box;position: fixed;z-index: 9;padding-top: 1rem;background:#d2d5dc;
+     li{text-align: center;cursor: pointer;padding: .1rem .25rem;color: #fff;margin: .16rem;border-radius: 22px}
      .current{background-color: #fbb03b}
    }
-   .search-content{width:100%;background-color: #eeedf2;overflow:hidden;}
+   .search-content{width:100%;overflow:hidden;}
    .category{font-size:.34rem;padding:.3rem 0 .1rem .3rem;background-color:#fff;text-align:left}
    .category-content{margin-bottom:.25rem}
    .search-pro{padding:.05rem .3rem;background-color: #fff;
@@ -331,10 +330,11 @@
      p{font-size: .28rem;text-overflow:ellipsis;white-space:nowrap;overflow:hidden}
      span{font-size: .24rem;color: #ff6d00;display:block;padding:.25rem 0 0 .1rem;text-align:left}
      i.price{color: #ff6d00;font-size: .4rem;}
-     i{color: #777777;font-size: .2rem;}
+     i{color: #777;font-size: .2rem;}
    }
    .search-more{height:.8rem;line-height:.8rem;color:#4ea2ff;text-align:center;font-size:.3rem;border-top:1px solid #edecf1;background-color:#fff;}
     #content{padding-top:2rem;height:100%}  
-   .swiper-slide-active{height:auto;background-color:#fff;min-height:550px}
+   .swiper-slide-active{height:auto;min-height:550px}
+   .swiper-all{background-color: #eeedf2;}
 </style>
 
