@@ -14,7 +14,7 @@
     <div class="category-content" v-if="FreeCount>0">
        <h2 class="category">机票+酒店</h2>
        <ul class="search-pro">
-         <li v-for="(item,index) in ProductList.FreeList.slice(0, 3)">
+         <li v-for="(item,index) in FreeList.slice(0, 3)">
             <router-link :to="{path:'freeDetail',query: {ID: item.ProductID}}">
               <div class="search-img">
                 <img v-bind:src="item.ImagePath">
@@ -35,7 +35,7 @@
     <div class="category-content" v-if="GroupCount>0">
        <h2 class="category">跟团游</h2>
          <ul class="search-pro">
-         <li v-for="(item,index) in ProductList.GroupList.slice(0, 3)">
+         <li v-for="(item,index) in GroupList.slice(0, 3)">
             <router-link :to="{path:'freeDetail',query: {ID: item.ProductID}}">
               <div class="search-img">
                 <img v-bind:src="item.ImagePath">
@@ -56,7 +56,7 @@
     <div class="category-content" v-if="SideCount>0">
        <h2 class="category">周边游</h2>
        <ul class="search-pro">
-         <li v-for="(item,index) in ProductList.SideList.slice(0, 3)">
+         <li v-for="(item,index) in SideList.slice(0, 3)">
             <router-link :to="{path:'freeDetail',query: {ID: item.ProductID}}">
               <div class="search-img">
                 <img v-bind:src="item.ImagePath">
@@ -77,7 +77,7 @@
     <div class="category-content" v-if="VisaCount>0">
        <h2 class="category">签证</h2>
        <ul class="search-pro">
-         <li v-for="(item,index) in ProductList.VisaList.slice(0, 3)">
+         <li v-for="(item,index) in VisaList.slice(0, 3)">
             <router-link :to="{path:'freeDetail',query: {ID: item.ProductID}}">
               <div class="search-img">
                 <img v-bind:src="item.ImagePath">
@@ -98,8 +98,8 @@
     <div class="category-content" v-if="SingeCount>0">
        <h2 class="category">城市玩乐</h2>
        <ul class="search-pro">
-         <li v-for="(item,index) in ProductList.SingeList.slice(0, 3)">
-            <router-link :to="{path:'freeDetail',query: {ID: item.ProductID}}">
+         <li v-for="(item,index) in SingeList.slice(0, 3)">
+              <div @click="singeRouter(item.SingleTypeID,item.ProductID)">
               <div class="search-img">
                 <img v-bind:src="item.ImagePath">
                 <em class="mark-type">城市玩乐</em>
@@ -110,16 +110,16 @@
                 <p>{{item.SubTitle}}</p>
                 <span>￥<i class="price">{{item.Price}}</i><i>起</i></span>
               </div>
-            </router-link>
+              </div>
          </li>
        </ul>
        <div class="search-more" @click="navtabClick(5)" v-if="SingeCount>4">查看更多</div>
     </div>
     </div>
     <!--自由行-->
-    <div class="swiper-slide search-content" v-if="FreeCount>0">
+    <div class="swiper-slide search-content" type="1" v-if="FreeCount>0">
         <ul class="search-pro">
-         <li v-for="(item,index) in ProductList.FreeList">
+         <li v-for="(item,index) in FreeList">
             <router-link :to="{path:'freeDetail',query: {ID: item.ProductID}}">
               <div class="search-img">
                 <img v-bind:src="item.ImagePath">
@@ -136,9 +136,9 @@
         </ul>
     </div>
     <!--跟团游-->
-    <div class="swiper-slide search-content" v-if="GroupCount>0">
+    <div class="swiper-slide search-content" type="2" v-if="GroupCount>0">
         <ul class="search-pro">
-         <li v-for="(item,index) in ProductList.GroupList">
+         <li v-for="(item,index) in GroupList">
             <router-link :to="{path:'freeDetail',query: {ID: item.ProductID}}">
               <div class="search-img">
                 <img v-bind:src="item.ImagePath">
@@ -155,9 +155,9 @@
         </ul>
     </div>
     <!--周边游-->
-    <div class="swiper-slide search-content" v-if="SideCount>0">
+    <div class="swiper-slide search-content" type="3" v-if="SideCount>0">
         <ul class="search-pro">
-         <li v-for="(item,index) in ProductList.SideList">
+         <li v-for="(item,index) in SideList">
             <router-link :to="{path:'freeDetail',query: {ID: item.ProductID}}">
               <div class="search-img">
                 <img v-bind:src="item.ImagePath">
@@ -174,9 +174,9 @@
         </ul>
     </div>
     <!--签证-->
-    <div class="swiper-slide search-content" v-if="VisaCount>0">
+    <div class="swiper-slide search-content" type="4" v-if="VisaCount>0">
         <ul class="search-pro">
-         <li v-for="(item,index) in ProductList.VisaList">
+         <li v-for="(item,index) in VisaList">
             <router-link :to="{path:'freeDetail',query: {ID: item.ProductID}}">
               <div class="search-img">
                 <img v-bind:src="item.ImagePath">
@@ -193,10 +193,10 @@
         </ul>
     </div>
     <!--城市玩乐-->
-    <div class="swiper-slide search-content" v-if="SingeCount>0">
+    <div class="swiper-slide search-content" type="5" v-if="SingeCount>0">
         <ul class="search-pro">
-         <li v-for="(item,index) in ProductList.SingeList.slice(0, 3)">
-            <router-link :to="{path:'freeDetail',query: {ID: item.ProductID}}">
+         <li v-for="(item,index) in SingeList">
+            <div @click="singeRouter(item.SingleTypeID,item.ProductID)">
               <div class="search-img">
                 <img v-bind:src="item.ImagePath">
                 <em class="mark-type">城市玩乐</em>
@@ -207,7 +207,7 @@
                 <p>{{item.SubTitle}}</p>
                 <span>￥<i class="price">{{item.Price}}</i><i>起</i></span>
               </div>
-            </router-link>
+            </div>
          </li>
         </ul>
     </div>
@@ -227,17 +227,32 @@
   export default {
   data () {
     return {
+      // 当前选中产品类型
       num:0,
-      ProductList:[],
-      navtab:[
-      ],
+      // 产品数据
+      FreeList:[],
+      GroupList:[],
+      SideList:[],
+      VisaList:[],
+      SingeList:[],
+      navtab:[],
+      
+      // 产品数量
       TotalCount:0,
       FreeCount:0,
       GroupCount:0,
       SideCount:0,
       VisaCount:0,
       SingeCount:0,
-      mySwiper:null
+      mySwiper:null,
+      
+      // 初始化产品分页
+      pageFree: 1,
+      pageGroup: 1,
+      pageSide: 1,
+      pageVisa: 1,
+      pageSinge: 1,
+      Keyword: this.$route.query.key
     }
   },
   mounted(){   //页面加载完成执行函数
@@ -246,18 +261,28 @@
     setTimeout(()=>{this.navtabClick(this.$route.query.type)},1000);
   },
   methods:{
-      //获取搜索结果
+      // 获取搜索结果
     getlistData:function(){         
          const _this=this;
          this.$http.post(this.GLOBAL.serverSrc+'Search/GetSearchResultList',this.qs.stringify({'Keyword':this.$route.query.key}))
              .then(function(res){                                     
-              _this.ProductList=res.data.ProductList;  
+             
+             // 不同类型产品数据
+              _this.FreeList=res.data.ProductList.FreeList;
+              _this.GroupList=res.data.ProductList.GroupList;  
+              _this.SideList=res.data.ProductList.SideList;  
+              _this.VisaList=res.data.ProductList.VisaList;  
+              _this.SingeList=res.data.ProductList.SingeList;    
+
+              // 不同类型产品数量
               _this.TotalCount=res.data.ProductCount.TotalCount; 
               _this.FreeCount=res.data.ProductCount.FreeCount;
               _this.GroupCount=res.data.ProductCount.GroupCount;     
               _this.SideCount=res.data.ProductCount.SideCount;    
               _this.VisaCount=res.data.ProductCount.VisaCount;    
               _this.SingeCount=res.data.ProductCount.SingeCount; 
+              
+              // 生成导航
               if(_this.TotalCount>0){
                   _this.navtab.push({name:'全部'});
               }
@@ -295,13 +320,80 @@
                 document.getElementById('search-navtab').scrollLeft=500;
             }
         },
-
+        onTouchEnd: function (Swiper) {
+            var viewHeight = document.getElementsByClassName('swiper-wrapper')[0].offsetHeight;
+            var contentHeight = document.getElementsByClassName('swiper-slide-active')[0].offsetHeight;
+            //上拉加载
+            if (mySwiper.translate <= viewHeight - contentHeight - 50 && mySwiper.translate < 0) {
+              var PageIndex = 1;           
+              var dataType = null;
+              var type=document.querySelector(".swiper-slide-active").getAttribute("type");
+              if(type == 1){
+                _this.pageFree++;
+                PageIndex = _this.pageFree;
+                dataType = 'FreeList';
+              }else if(type == 2){
+                _this.pageGroup++;
+                PageIndex = _this.pageGroup;
+                dataType = 'GroupList';
+              }else if(type == 3){
+                _this.pageSide++;
+                PageIndex = _this.pageSide;
+                dataType = 'SideList';
+              }else if(type == 4){
+                _this.pageVisa++;
+                PageIndex = _this.pageVisa;
+                dataType = 'VisaList';
+              }else if(type == 5){
+                _this.pageSinge++;
+                PageIndex = _this.pageSinge;
+                dataType = 'SingeList';
+              }else{
+                return false;
+              }
+             console.log(dataType);
+              _this.$http.post(_this.GLOBAL.serverSrc+'Search/GetSearchResultListByType',_this.qs.stringify({"Type": type,"PageIndex":PageIndex,'Keyword':_this.$route.query.key}))
+              .then(function(res){
+                 if(res.data.ProductList[dataType].length != 0){
+                    var item=res.data;
+                    for(var i=0;i<item.ProductList[dataType].length;i++){
+                        if(dataType=='FreeList'){
+                         // _this.FreeList.push(item.ProductList[dataType][i]);
+                          Vue.set(_this.FreeList,_this.FreeList.length,item.ProductList[dataType][i]);
+                        }
+                        if(dataType=='GroupList'){
+                          _this.GroupList.push(item.ProductList[dataType][i]);
+                        }
+                        if(dataType=='SideList'){
+                          _this.SideList.push(item.ProductList[dataType][i]);
+                        }
+                        if(dataType=='VisaList'){
+                          _this.VisaList.push(item.ProductList[dataType][i]);
+                        }
+                        if(dataType=='SingeList'){
+                          _this.SingeList.push(item.ProductList[dataType][i]);
+                        }                        
+                    }             
+                 }             
+                 console.log(_this.SingeList);
+              })
+            }
+        }
     })
       this.mySwiper=mySwiper;
     },
     navtabClick:function(index){
       this.num = index;
       this.mySwiper.slideTo(index, 500);
+      console.log(index);
+      console.log(this.num);
+    },
+    singeRouter:function(type,id){
+      if(type=='4'){
+          this.$router.push({path:'wifiDetail',query: {ID:id}});
+       }else{
+          this.$router.push({path:'cardDetail',query: {ID:id}});
+      }
     }
   }
 }
