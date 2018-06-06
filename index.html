@@ -9,9 +9,14 @@
     <meta name="full-screen" content="yes">
     <meta name="x5-fullscreen" content="true">
     <title>my-vue</title>
-    <!--<link href="src/style/plugins/global.css" rel="stylesheet" />-->
     <script>
-        document.documentElement.style.fontSize = document.documentElement.clientWidth /7.5 + 'px';
+          function resizeFn() {
+              document.documentElement.style.fontSize= document.documentElement.clientWidth / 7.5 +'px';
+          }
+          resizeFn();
+          window.onresize = function () {
+          resizeFn();
+        }
     </script>
   </head>
   <body>

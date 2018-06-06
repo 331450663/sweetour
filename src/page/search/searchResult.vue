@@ -358,8 +358,9 @@
                     var item=res.data;
                     for(var i=0;i<item.ProductList[dataType].length;i++){
                         if(dataType=='FreeList'){
-                         // _this.FreeList.push(item.ProductList[dataType][i]);
-                          Vue.set(_this.FreeList,_this.FreeList.length,item.ProductList[dataType][i]);
+                          
+                          _this.FreeList.push(item.ProductList[dataType][i]);
+                          //vm.$set(_this.FreeList,_this.FreeList.length,item.ProductList[dataType][i]);
                         }
                         if(dataType=='GroupList'){
                           _this.GroupList.push(item.ProductList[dataType][i]);
@@ -375,7 +376,7 @@
                         }                        
                     }             
                  }             
-                 console.log(_this.SingeList);
+                 console.log(_this.FreeList);
               })
             }
         }
