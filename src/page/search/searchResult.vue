@@ -15,7 +15,7 @@
        <h2 class="category">机票+酒店</h2>
        <ul class="search-pro">
          <li v-for="(item,index) in FreeList.slice(0, 3)">
-            <router-link :to="{path:'freeDetail',query: {ID: item.ProductID}}">
+            <router-link :to="{path:'/freeDetail',query: {ID: item.ProductID}}">
               <div class="search-img">
                 <img v-bind:src="item.ImagePath">
                 <em class="mark-type">机票+酒店</em>
@@ -36,7 +36,7 @@
        <h2 class="category">跟团游</h2>
          <ul class="search-pro">
          <li v-for="(item,index) in GroupList.slice(0, 3)">
-            <router-link :to="{path:'freeDetail',query: {ID: item.ProductID}}">
+            <router-link :to="{path:'/freeDetail',query: {ID: item.ProductID}}">
               <div class="search-img">
                 <img v-bind:src="item.ImagePath">
                 <em class="mark-type">跟团游</em>
@@ -57,7 +57,7 @@
        <h2 class="category">周边游</h2>
        <ul class="search-pro">
          <li v-for="(item,index) in SideList.slice(0, 3)">
-            <router-link :to="{path:'freeDetail',query: {ID: item.ProductID}}">
+            <router-link :to="{path:'/freeDetail',query: {ID: item.ProductID}}">
               <div class="search-img">
                 <img v-bind:src="item.ImagePath">
                 <em class="mark-type">周边游</em>
@@ -78,7 +78,7 @@
        <h2 class="category">签证</h2>
        <ul class="search-pro">
          <li v-for="(item,index) in VisaList.slice(0, 3)">
-            <router-link :to="{path:'freeDetail',query: {ID: item.ProductID}}">
+            <router-link :to="{path:'/freeDetail',query: {ID: item.ProductID}}">
               <div class="search-img">
                 <img v-bind:src="item.ImagePath">
                 <em class="mark-type">签证</em>
@@ -89,7 +89,7 @@
                 <p>{{item.SubTitle}}</p>
                 <span>￥<i class="price">{{item.Price}}</i><i>起</i></span>
               </div>
-            </router-link>
+            </router-link> 
          </li>
        </ul>
        <div class="search-more" @click="navtabClick(4)" v-if="VisaCount>4">查看更多</div>
@@ -120,7 +120,7 @@
     <div class="swiper-slide search-content" type="1" v-if="FreeCount>0">
         <ul class="search-pro">
          <li v-for="(item,index) in FreeList">
-            <router-link :to="{path:'freeDetail',query: {ID: item.ProductID}}">
+            <router-link :to="{path:'/freeDetail',query: {ID: item.ProductID}}">
               <div class="search-img">
                 <img v-bind:src="item.ImagePath">
                 <em class="mark-type">机票+酒店</em>
@@ -139,7 +139,7 @@
     <div class="swiper-slide search-content" type="2" v-if="GroupCount>0">
         <ul class="search-pro">
          <li v-for="(item,index) in GroupList">
-            <router-link :to="{path:'freeDetail',query: {ID: item.ProductID}}">
+            <router-link :to="{path:'/freeDetail',query: {ID: item.ProductID}}">
               <div class="search-img">
                 <img v-bind:src="item.ImagePath">
                 <em class="mark-type">跟团游</em>
@@ -158,7 +158,7 @@
     <div class="swiper-slide search-content" type="3" v-if="SideCount>0">
         <ul class="search-pro">
          <li v-for="(item,index) in SideList">
-            <router-link :to="{path:'freeDetail',query: {ID: item.ProductID}}">
+            <router-link :to="{path:'/freeDetail',query: {ID: item.ProductID}}">
               <div class="search-img">
                 <img v-bind:src="item.ImagePath">
                 <em class="mark-type">周边游</em>
@@ -177,7 +177,7 @@
     <div class="swiper-slide search-content" type="4" v-if="VisaCount>0">
         <ul class="search-pro">
          <li v-for="(item,index) in VisaList">
-            <router-link :to="{path:'freeDetail',query: {ID: item.ProductID}}">
+            <router-link :to="{path:'/freeDetail',query: {ID: item.ProductID}}">
               <div class="search-img">
                 <img v-bind:src="item.ImagePath">
                 <em class="mark-type">签证</em>
@@ -391,9 +391,9 @@
     },
     singeRouter:function(type,id){
       if(type=='4'){
-          this.$router.push({path:'wifiDetail',query: {ID:id}});
+          this.$router.push({path:'/wifiDetail',query: {ID:id}});
        }else{
-          this.$router.push({path:'cardDetail',query: {ID:id}});
+          this.$router.push({path:'/cardDetail',query: {ID:id}});
       }
     }
   }

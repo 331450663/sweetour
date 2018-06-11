@@ -1,7 +1,7 @@
 <template>
         <ul class="foo-nav-inner">
             <li class="foo-nav-inn-list">
-               <router-link :to="'home'">
+               <router-link :to="'/home'">
                    <div class="foo-nav-img">
                         <img src="../../images/footer/index-ing.gif" class="active1" />
                         <img src="../../images/footer/index-ed.png" class="active2" />
@@ -10,7 +10,7 @@
                </router-link>
             </li>
             <li class="foo-nav-inn-list">
-                <router-link :to="'destination'">
+                <router-link :to="'/destination'">
                     <div class="foo-nav-img">
                          <img src="../../images/footer/whither-ing.gif" class="active1" />
                          <img src="../../images/footer/whither-ed.png" class="active2" />
@@ -19,7 +19,7 @@
                 </router-link>
             </li>
             <li class="foo-nav-inn-list">
-                <router-link :to="'notesList'">
+                <router-link :to="'/notesList'">
                     <div class="foo-nav-img">
                          <img src="../../images/footer/custom-ing.png" class="active1" />
                          <img src="../../images/footer/custom-ed.png" class="active2" />
@@ -28,7 +28,7 @@
                 </router-link>
             </li>
             <li class="foo-nav-inn-list">
-                <router-link :to="'member'">
+                <router-link :to="'/member'">
                     <div class="foo-nav-img">
                          <img src="../../images/footer/my-ing.png" class="active1" />
                          <img src="../../images/footer/my-ed.png" class="active2" />
