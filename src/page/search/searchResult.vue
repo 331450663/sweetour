@@ -328,50 +328,61 @@
               var PageIndex = 1;           
               var dataType = null;
               var type=document.querySelector(".swiper-slide-active").getAttribute("type");
-              if(type == 1){
+           
+            switch(type) {
+             case "1":
                 _this.pageFree++;
                 PageIndex = _this.pageFree;
                 dataType = 'FreeList';
-              }else if(type == 2){
-                _this.pageGroup++;
+                break;
+             case "2":
+                 _this.pageGroup++;
                 PageIndex = _this.pageGroup;
                 dataType = 'GroupList';
-              }else if(type == 3){
-                _this.pageSide++;
+                 break;
+             case "3":
+                 _this.pageSide++;
                 PageIndex = _this.pageSide;
                 dataType = 'SideList';
-              }else if(type == 4){
-                _this.pageVisa++;
+                 break;
+             case "4":
+                  _this.pageVisa++;
                 PageIndex = _this.pageVisa;
                 dataType = 'VisaList';
-              }else if(type == 5){
-                _this.pageSinge++;
+                 break;
+             case "5":
+                 _this.pageSinge++;
                 PageIndex = _this.pageSinge;
                 dataType = 'SingeList';
-              }else{
-                return false;
+                 break;
+             default:
+                 return false;
               }
+
               _this.$http.post(_this.GLOBAL.serverSrc+'Search/GetSearchResultListByType',_this.qs.stringify({"Type": type,"PageIndex":PageIndex,'Keyword':_this.$route.query.key}))
               .then(function(res){
                  if(res.data.ProductList[dataType].length != 0){
                     var item=res.data;
                     for(var i=0;i<item.ProductList[dataType].length;i++){
-                        if(dataType=='FreeList'){                       
-                           _this.FreeList.push(item.ProductList[dataType][i]);
-                          //_this.$set(_this.FreeList, _this.FreeList.length, item.ProductList[dataType][i]);
-                        }
-                        if(dataType=='GroupList'){
-                          _this.GroupList.push(item.ProductList[dataType][i]);
-                        }
-                        if(dataType=='SideList'){
-                          _this.SideList.push(item.ProductList[dataType][i]);
-                        }
-                        if(dataType=='VisaList'){
-                          _this.VisaList.push(item.ProductList[dataType][i]);
-                        }
-                        if(dataType=='SingeList'){
-                          _this.SingeList.push(item.ProductList[dataType][i]);
-                        }                        
+                        switch(dataType) {
+                          case "FreeList":
+                            _this.FreeList.push(item.ProductList[dataType][i]);
+                            break;
+                          case "GroupList":
+                            _this.GroupList.push(item.ProductList[dataType][i]);
+                            break;
+                          case "SideList":
+                            _this.SideList.push(item.ProductList[dataType][i]);
+                            break;
+                          case "VisaList":
+                            _this.VisaList.push(item.ProductList[dataType][i]);
+                            break;
+                          case "SingeList":
+                            _this.SingeList.push(item.ProductList[dataType][i]);
+                            break;
+                          default:
+                            return false;
+                        }                       
                     }             
                  }             
                  mySwiper.update();

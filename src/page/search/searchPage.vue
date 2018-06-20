@@ -76,19 +76,15 @@
         })
     },
     search:function(){
-         if(this.keyword == null) {
-          alert("请输入搜索目的地关键字");
-          return;
-         }
-         else if (this.keyword.length > 30) {
-          alert('搜索内容必须小于30个字');
-          return;
-         }
-         else if (this.keyword == '目的地/关键字/景点') {
-          alert('请输入搜索关键字');
-          return;
-         }else{
-          this.$router.push({path:'/searchResult',query: {type: '0', key: this.keyword}})
+          switch(true) {
+            case (this.keyword == null):
+               alert("请输入搜索目的地关键字");
+               break;
+            case (this.keyword.length > 30):
+               alert('搜索内容必须小于30个字');
+               break;
+            default:
+               this.$router.push({path:'/searchResult',query: {type: '0', key: this.keyword}});
          }
     },
     customer:function(){
