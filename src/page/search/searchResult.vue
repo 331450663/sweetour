@@ -351,16 +351,14 @@
               }else{
                 return false;
               }
-             console.log(dataType);
               _this.$http.post(_this.GLOBAL.serverSrc+'Search/GetSearchResultListByType',_this.qs.stringify({"Type": type,"PageIndex":PageIndex,'Keyword':_this.$route.query.key}))
               .then(function(res){
                  if(res.data.ProductList[dataType].length != 0){
                     var item=res.data;
                     for(var i=0;i<item.ProductList[dataType].length;i++){
-                        if(dataType=='FreeList'){
-                          
-                          _this.FreeList.push(item.ProductList[dataType][i]);
-                          //vm.$set(_this.FreeList,_this.FreeList.length,item.ProductList[dataType][i]);
+                        if(dataType=='FreeList'){                       
+                           _this.FreeList.push(item.ProductList[dataType][i]);
+                          //_this.$set(_this.FreeList, _this.FreeList.length, item.ProductList[dataType][i]);
                         }
                         if(dataType=='GroupList'){
                           _this.GroupList.push(item.ProductList[dataType][i]);
@@ -376,7 +374,7 @@
                         }                        
                     }             
                  }             
-                 console.log(_this.FreeList);
+                 mySwiper.update();
               })
             }
         }
@@ -386,8 +384,6 @@
     navtabClick:function(index){
       this.num = index;
       this.mySwiper.slideTo(index, 500);
-      console.log(index);
-      console.log(this.num);
     },
     singeRouter:function(type,id){
       if(type=='4'){
